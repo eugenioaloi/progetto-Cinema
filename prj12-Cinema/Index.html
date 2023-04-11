@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/syle.css">
+</head>
+<body>
+    
+    <h1>Cinema Coding</h1>
+
+    <div class="container" id="divLocandina">
+
+        <h3 id="titolo"></h3>
+
+        <img id="locandina" src=""></img>
+
+        <p id="regista"></p>
+
+        <ul id="attori"></ul>
+
+        <p id="durata"></p>
+
+        <button id="btnTrama">Visualizza/nascondi la trama</button>
+        <!-- clicco su leggi la trama. Riclicco e sparisce la trama -->
+        <p id="trama"></p>
+
+        <button id="btnIndietro">Indietro</button>
+
+        <button id="btnAvanti">Avanti</button>
+        
+    </div>
+
+    <div class="container" id="divLogin">
+       
+        <h3>Login</h3>
+        <input type="text" id="usename" placeholder="username">
+        <input type="text" id="psw" placeholder="password">
+        <button id="btnLogin">Login</button>
+        
+    </div>
+
+    <!-- Faccio il login con qualsiasi username e psw. (controllo solo se i campi sono stati compilati)
+        Saluto l'utente. Quando l'utente è connesso mostro un pulsante sotto 
+        le locandine -> compra
+        Quando l'utente clicca su compra verrà registrato il titolo nlla localstorage e 
+        verrà mostrato in una lista dentro il divLogin -->
+
+<script src="./js/Cinema.js"></script>
+
+</body>
+</html>
