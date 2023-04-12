@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cinema coding</title>
     <link rel="stylesheet" href="./css/syle.css">
 </head>
 <body>
     
-    <h1>Cinema Coding</h1>
-
+    <h1>Cinema coding</h1>
+    <p>Dove i film sono inniettati direttament nell'Html </p>
+    
     <div class="container" id="divLocandina">
-
+        
         <h3 id="titolo"></h3>
-
+        
         <img id="locandina" src=""></img>
+        
+        <!-- Quando l'utente è connesso mostro un pulsante sotto le locandine -> compra -->
+        <button id="compraFilm">Compra film</button>
+
+        <h2 id="salutaUser"></h2>
 
         <p id="regista"></p>
 
@@ -36,15 +42,14 @@
     <div class="container" id="divLogin">
        
         <h3>Login</h3>
-        <input type="text" id="usename" placeholder="username">
+        <input type="text" id="username" placeholder="username">
         <input type="text" id="psw" placeholder="password">
         <button id="btnLogin">Login</button>
         
     </div>
 
-    <!-- Faccio il login con qualsiasi username e psw. (controllo solo se i campi sono stati compilati)
-        Saluto l'utente. Quando l'utente è connesso mostro un pulsante sotto 
-        le locandine -> compra
+    <!-- 
+
         Quando l'utente clicca su compra verrà registrato il titolo nlla localstorage e 
         verrà mostrato in una lista dentro il divLogin -->
 

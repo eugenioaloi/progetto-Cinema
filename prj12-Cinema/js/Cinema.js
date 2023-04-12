@@ -50,14 +50,24 @@ let trama = document.querySelector("#trama");
 let btnAvanti = document.querySelector("#btnAvanti");
 let btnIndietro = document.querySelector("#btnIndietro")
 let btnTrama = document.querySelector("#btnTrama");
+let btnLogin = document.querySelector("#btnLogin");
+
 
 mostraFilm(0);
 
+let btnCompra = document.querySelector("#compraFilm");
+
+function disattivaBtnCompra(){
+    btnCompra.disabled=true;
+}
+
+disattivaBtnCompra()
+
 function mostraFilm(indice) {
-    titolo.innerHTML = filmsJSON[indice].titolo;
-    regista.innerHTML = filmsJSON[indice].regista;
+    titolo.innerHTML = "Titolo del film: "+filmsJSON[indice].titolo;
+    regista.innerHTML = "Regista: "+filmsJSON[indice].regista;
     creaNuovoLi();
-    durata.innerHTML = filmsJSON[indice].durata + " min.";
+    durata.innerHTML = "Durata: "+filmsJSON[indice].durata + " min.";
     locandina.src = filmsJSON[indice].poster;
     trama.innerHTML = filmsJSON[indice].trama;
 }
@@ -111,8 +121,40 @@ function leggiTrama() {
     } else {
         trama.style.display = "none";
     }
-   
-    console.log("index trama: " + indice);
 }
 
 btnTrama.addEventListener("click", leggiTrama);
+
+//Faccio il login con qualsiasi username e psw. 
+
+function doLogin(){
+    let userName = document.querySelector("#username").value;
+    let psw = document.querySelector("#psw").value;
+    let salutaUser = document.querySelector("#salutaUser");
+    
+    localStorage.setItem("User loggato: ", userName);
+    localStorage.setItem("Psw utilizzata: ", psw);
+    
+    //Controllo solo se i campi sono stati compilati
+    var flagUs = userName =="" || userName ===null;
+    var flagPsW = psw =="" || psw ==null;
+    
+    if(flagUs){
+        alert("Per favore compila il campo user correttamente");
+    }else if(flagPsW){
+        alert("Per favore compila il campo password correttamente");
+    }else{//Saluto l'utente appena loggato
+        salutaUser.innerHTML = "Ciao " + userName + ", benvenuto nel portale cinema";
+        btnCompra.disabled = false;
+    }
+}
+
+btnLogin.addEventListener("click", doLogin);
+
+function compra(indice){
+    let titolo = filmsJSON[indice].titolo;
+    console.log("titolo del film: " , titolo);
+    localStorage.setItem("Titolo: ", titolo);
+}
+
+btnCompra.addEventListener("click", compra(indice));
