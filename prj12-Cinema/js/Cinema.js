@@ -51,17 +51,9 @@ let btnAvanti = document.querySelector("#btnAvanti");
 let btnIndietro = document.querySelector("#btnIndietro")
 let btnTrama = document.querySelector("#btnTrama");
 let btnLogin = document.querySelector("#btnLogin");
-
+let divLog = document.querySelector('#divLogin');
 
 mostraFilm(0);
-
-let btnCompra = document.querySelector("#compraFilm");
-
-function disattivaBtnCompra(){
-    btnCompra.disabled=true;
-}
-
-disattivaBtnCompra()
 
 function mostraFilm(indice) {
     titolo.innerHTML = "Titolo del film: "+filmsJSON[indice].titolo;
@@ -90,13 +82,12 @@ function creaNuovoLi() {
 
 function avanti() {
     
-    mostraFilm(indice);
     indice++;
+    mostraFilm(indice);
     
     if (indice == filmsJSON.length) {
         indice = 0;
     }
-    
 };
 
 btnAvanti.addEventListener("click", avanti);
@@ -122,11 +113,17 @@ function leggiTrama() {
         trama.style.display = "none";
     }
 }
-
 btnTrama.addEventListener("click", leggiTrama);
 
-//Faccio il login con qualsiasi username e psw. 
+let btnCompra = document.querySelector("#compraFilm");
 
+function disattivaBtnCompra(){
+    btnCompra.disabled=true;
+}
+
+disattivaBtnCompra()
+
+//Faccio il login con qualsiasi username e psw. 
 function doLogin(){
     let userName = document.querySelector("#username").value;
     let psw = document.querySelector("#psw").value;
@@ -148,13 +145,27 @@ function doLogin(){
         btnCompra.disabled = false;
     }
 }
-
 btnLogin.addEventListener("click", doLogin);
 
-function compra(indice){
-    let titolo = filmsJSON[indice].titolo;
-    console.log("titolo del film: " , titolo);
-    localStorage.setItem("Titolo: ", titolo);
-}
+let filmArr = [];
 
-btnCompra.addEventListener("click", compra(indice));
+//compra il film, ovvero salvalo nella session storage
+function compra(){
+    let index = indice;
+    let title = filmsJSON[index].titolo;
+        
+    for(i=0;i<filmArr.length+1;i++){
+        if(!filmArr.includes(title)){
+            filmArr.push(title);
+
+            //Quando l'utente clicca su compra verrà registrato il titolo nlla localstorage 
+            localStorage.setItem("Film comprati: ", filmArr);
+            
+            //viene poi mostrato il titolo del film comprato dentro un div
+            divLog.innerHTML = "<h3> Film comprati <h3>" + "<p> " + filmArr + "<p>";
+        }
+    }
+}
+btnCompra.addEventListener("click", compra);
+
+
